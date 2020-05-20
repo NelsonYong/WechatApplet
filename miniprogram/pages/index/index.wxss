@@ -1,0 +1,15 @@
+/* miniprogram/pages/index/index.wxss */
+.swiper{
+  height: 400rpx;
+}
+.swiper-item{
+  background: #f00;
+  height: 300rpx;
+  font-size: 48rpx;
+  font-weight: bold;
+  text-align: center;
+  line-height: 300rpx;
+  margin: 0 20rpx;
+  border-radius: 30rpx;
+
+}

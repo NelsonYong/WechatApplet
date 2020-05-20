@@ -1,0 +1,65 @@
+{
+ "icon_url":"cloud://wechat-6zrti.7765-wechat-6zrti-1300845689/Could_Projects/images/type1.png",
+ "title":"餐饮",
+  "type":"canyin"
+}
+
+{
+  "icon_url":"cloud://wechat-6zrti.7765-wechat-6zrti-1300845689/Could_Projects/images/type2.png",
+  "title":"购物",
+   "type":"gouwu"
+ }
+
+ {
+  "icon_url":"cloud://wechat-6zrti.7765-wechat-6zrti-1300845689/Could_Projects/images/type3.png",
+  "title":"出行",
+   "type":"chuxin"
+ }
+ 
+ {
+  "icon_url":"cloud://wechat-6zrti.7765-wechat-6zrti-1300845689/Could_Projects/images/type4.png",
+  "title":"健康",
+   "type":"jiankang"
+ }
+
+ {
+  "icon_url":"cloud://wechat-6zrti.7765-wechat-6zrti-1300845689/Could_Projects/images/type5.png",
+  "title":"娱乐",
+   "type":"yule"
+ }
+ {
+  "icon_url":"cloud://wechat-6zrti.7765-wechat-6zrti-1300845689/Could_Projects/images/type6.png",
+  "title":"住房",
+   "type":"zhufang"
+ }
+
+ {
+  "icon_url":"cloud://wechat-6zrti.7765-wechat-6zrti-1300845689/Could_Projects/images/type7.png",
+  "title":"人情",
+   "type":"renqing"
+ }
+
+ {
+  "icon_url":"cloud://wechat-6zrti.7765-wechat-6zrti-1300845689/Could_Projects/images/type8.png",
+  "title":"交通",
+   "type":"jiaotong"
+ }
+
+ {
+  "icon_url":"cloud://wechat-6zrti.7765-wechat-6zrti-1300845689/Could_Projects/images/type9.png",
+  "title":"学习",
+   "type":"xuexi"
+ }
+ {
+  "icon_url":"cloud://wechat-6zrti.7765-wechat-6zrti-1300845689/Could_Projects/images/type10.png",
+  "title":"投资",
+   "type":"touzi"
+ }
+
+
+
+
+
+ 
+ 
+ 

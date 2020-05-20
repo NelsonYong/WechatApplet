@@ -1,0 +1,156 @@
+.header{
+  /* background-color: #FEDB5A; */
+  background-image: linear-gradient(to right, #FCD957, #F2BE44);
+  padding: 40rpx 60rpx;
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 310rpx;
+  box-sizing: border-box;
+}
+.top{
+  height: 130rpx;
+}
+.top-title{
+  font-size: 28rpx;
+  color: #A5831F;
+}
+.top-tatal{
+  font-size: 52rpx;
+  font-weight: bold;
+  color: #302C1F;
+}
+.top-tatal .small{
+  font-size: 38rpx;
+
+}
+.bottom{
+  position: relative;
+  height: 100rpx;
+}
+.item-bottom{
+  width: 50%;
+  box-sizing: border-box;
+  text-align: center;
+}
+.bottom-title{
+  color: #A5831F;
+}
+.bottom-tatal{
+  padding-top: 10rpx;
+  font-weight: bold;
+}
+.line{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 1px;
+  height: 50%;
+  background-color: #866A21;
+}
+
+/* 账单记录 */
+.content{
+  padding: 0 20rpx 20rpx;
+  background-color: #fff;
+}
+/* 日期 */
+.date{
+  position: sticky;
+  top: 310rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  background-color: #fff;
+}
+
+.date-title text{
+  font-size: 28rpx;
+  color: #A09F9D;
+  margin-right: 20rpx;
+}
+.more{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.date-picker{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+/* 圆圈 */
+.cricle{
+  width: 8rpx;
+  height: 8rpx;
+  background-color: #9B9B9B;
+  border-radius: 50%;
+  margin: 0 5rpx;
+
+}
+
+/* 记录 */
+.item-list{
+  background-color: #fff;
+}
+/* 单个记录 */
+.item{
+  padding: 20rpx 0;
+  /* padding: 20rpx 0 20rpx 80rpx; */
+  display: flex;
+  align-items: center;
+  /* position: relative */
+}
+/* 左边图标 */
+.item-icon{
+  /* position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -40rpx; */
+  width: 80rpx;
+  height: 80rpx;
+}
+.item-icon image{
+  width: 100%;
+  height: 100%;
+}
+/* 右边文字 */
+.item-box{
+  width: calc(100% - 80rpx);
+  /* width: 100%; */
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+/* 内容 */
+.item-text{
+  margin-left: 20rpx;
+}
+.item-text .text-title{
+  font-weight: bold;
+}
+.item-text .text-msg{
+  padding-top: 10rpx;
+  color: #B7B7B7;
+  font-size: 24rpx;
+}
+/* 价格 */
+.item-money{
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+.add{
+  color: #FE5B62;
+}
+.reduce{
+  color: #1F8167;
+}

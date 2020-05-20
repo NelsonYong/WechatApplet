@@ -1,0 +1,10 @@
+<view wx:for="{{arr}}" wx:key="index">
+{{index}}: {{item.user}}的密码{{item.psd}}
+</view>
+<swiper class="swiper" indicator-dots="true" indicator-color="rgba(255,0,0,.5)" autoplay="true" interval="3000" circular="true" previous-margin="50rpx" next-margin="50rpx">
+  <block wx:for="{{banner}}" wx:key="index">
+    <swiper-item>
+      <view class="swiper-item">{{item}}</view>
+    </swiper-item>
+  </block>
+</swiper>

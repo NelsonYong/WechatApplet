@@ -1,0 +1,148 @@
+/* miniprogram/pages/record/record.wxss */
+page{
+  background-color: #ededed;
+}
+/*头部 */
+.header{
+  height: 160rpx;
+  background-color: #4B0082;
+}
+
+/* 内容 */
+.content{
+  /* background-color: #f00; */
+  height: 500rpx;
+  margin-top: -100rpx;
+  padding: 0 30rpx;
+
+}
+
+/* 内容---》 类型 */
+.type{
+  background: #fff;
+  border-radius: 30rpx;
+  padding-top: 40rpx;
+}
+.type .type-title{
+  width: 280rpx;
+  margin: 0 auto;
+  border: 1px solid #4B0082;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 30rpx;
+  overflow: hidden;
+}
+.type .type-title .title-item{
+  width: 50%;
+  font-size: 28rpx;
+  color:#FEDB5A;
+  
+}
+.type .type-title .active{
+  background-color:  #4B0082;
+}
+
+/* 轮播 */
+.banner-swiper{
+  height: 452rpx;
+}
+
+/* 单个选项 */
+.item{
+  width: 20%;
+  height: 126rpx;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60rpx;
+}
+
+/* 图标 */
+.icon{
+  width: 80rpx;
+  height: 80rpx;
+
+}
+.icon image{
+  width: 100%;
+  height: 100%;
+
+}
+/* 文字 */
+.item .text{
+  font-size: 28rpx;
+  color: #999999;
+  padding-top: 10rpx;
+}
+
+/* 账户选择 */
+.account,
+.info{
+  margin-top: 20rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+  padding: 20rpx;
+}
+/* 标题 */
+.account-title{
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  border-bottom: 1px solid #f5f5f5;
+}
+.account-title text{
+  margin-right: 8rpx;
+}
+
+/*  选择类型*/
+.account-tab{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20rpx;
+}
+.tab-item{
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  background-color: #f5f5f5;
+  border-radius: 24rpx;
+  color: #A3A3A3;
+}
+
+.tab-item.active{
+  background-color: #FED5AB;
+
+}
+
+.info-box{
+  display: flex;
+
+}
+.date-title{
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+  margin-right: 40rpx;
+ 
+}
+.record-data{
+  font-size: 28rpx;
+  line-height: 60rpx;
+}
+
+.info-input{
+
+  font-size: 28rpx;
+  line-height: 60rpx;
+}
+
+.date-picker{
+  display: flex;
+  width: 100%;
+}

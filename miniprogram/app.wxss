@@ -1,0 +1,13 @@
+@import "./style/iconfont.wxss";
+.fr{
+  float: right;
+}
+.fl{
+  float: left;
+}
+/* 清除浮动类 */
+.clearfix::after{
+  content: "";
+  display: block;
+  clear: both;
+}

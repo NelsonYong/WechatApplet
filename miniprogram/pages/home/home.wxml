@@ -1,0 +1,65 @@
+<view class="home">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="top">
+      <view class="top-title">本月结余</view>
+      <view class="top-tatal">1234567.<text class="small">00</text></view>
+    </view>
+
+    <view class="bottom clearfix">
+      <view class="item-bottom fl">
+        <view class="bottom-title">本月收入</view>
+        <view class="bottom-tatal">6666666.00</view>
+      </view>
+      <view class="line"></view>
+      <view class="item-bottom fl">
+        <view class="bottom-title">本月支出</view>
+        <view class="bottom-tatal">55555555.00</view>
+      </view>
+    </view>
+  </view>
+  <!-- 账单记录 -->
+  <view class="content">
+    <!-- 日期 -->
+    <view class="date">
+     
+      <view class="date-title">
+        <text>5月18日</text>
+        <text>今天</text>
+        <text>收入: 288</text>
+        <text>支出: 188</text>
+      </view>
+      <!-- 右边三个点 -->
+      <view class="more">
+      <picker class="date-picker" mode="date"  start="{{dateRange.start}}" end="{{dateRange.end}}" bindchange="selectDate">1</picker>
+        <view class="cricle"></view>
+        <view class="cricle"></view>
+        <view class="cricle"></view>
+      </view>
+    </view>
+    <!-- 记录 -->
+    <view class="item-list" wx:for="{{arr}}" wx:key="index">
+      <view class="item">
+      <!-- 左边 图标-->
+        <view class="item-icon">
+          <image src="cloud://wechat-6zrti.7765-wechat-6zrti-1300845689/Could_Projects/images/type1.png"></image>
+        </view>
+        <!-- 右边文字 -->
+        <view class="item-box">
+          <!-- 内容 -->
+          <view class="item-text">
+            <view class="text-title">早餐</view>
+            <view class="text-msg">两个包子，一杯豆浆</view>
+          </view>
+          <!-- 价格 -->
+          <view class="item-money add">+￥5.00</view>
+        </view>
+        
+      </view>
+    </view>
+     
+
+  </view>
+
+</view>
+
