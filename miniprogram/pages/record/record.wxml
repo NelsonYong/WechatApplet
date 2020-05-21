@@ -13,17 +13,17 @@
       <!-- 轮播 -->
       <view class="banner">
         <swiper  class="banner-swiper" indicator-dots="{{swiperData.indicatorDots}}" indicator-color="{{swiperData.indicatorColor}}" indicator-active-color="{{swiperData.activeColor}}">
-        <block wx:for="{{swiperNum}}" wx:key="index">
+        <block wx:for="{{bookKeepingData}}" wx:key="index">
           <swiper-item>
             <view class="swiper-item clearfix">
 
-              <view  id="item" class="item" wx:for="{{n}}" wx:key="index">
+              <view  id="item  " class="item {{itemType.isAct ? 'active' : ''}}" wx:for="{{item}}" wx:for-item="itemType" wx:for-index= "id" wx:key="id" data-index="{{index}}" data-id="{{id}}" bindtap="selectBookKeepingType">
                 <!-- 图标 -->
                 <view class="icon">
-                  <image src="cloud://wechat-6zrti.7765-wechat-6zrti-1300845689/Could_Projects/images/type4.png"></image>
+                  <image src="{{itemType.icon_url}}"></image>
                 </view>
                 <!-- 文字 -->
-                <view class="text">娱乐</view>
+                <view class="text">{{itemType.title}}</view>
               </view>
              
             

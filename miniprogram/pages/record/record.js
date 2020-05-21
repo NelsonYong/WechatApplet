@@ -17,7 +17,8 @@ Page({
       }
     ],
     n:[1,2,3,4,5,6,7,8,9,10],
-    swiperNum: [1,2],
+    //页面个数
+    bookKeepingData: [],
     swiperData:{
       indicatorDots: true, // 指示点的控制
       indicatorColor: "#dbdbdb",// 指示点颜色
@@ -60,28 +61,8 @@ Page({
   onLoad: function (options) {
       
       this.setDate();
-
-      wx.showLoading({
-        title: '加载中',
-      })
-      wx.cloud.callFunction({
-        name:"get_book_data",
-        data:{},
-        success:function(res){     
-          wx.hideLoading();
-          let data=res.result.data;
-         
-          let type=[];
-          let begin=0;
-          
-          
-
-        }
-      })
-
-
-   
-
+      this.getBookkeepingType();
+     
   },
 
   /**
@@ -166,7 +147,86 @@ addzero:function(num){
 
 return num<10?("0"+num):num;
 
-}
+},
+
+getBookkeepingType:function(){
+
+  wx.showLoading({
+    title: '加载中',
+  })
+
+  // 记录this指向
+  let that = this;
+  wx.cloud.callFunction({
+    name:"get_book_data",
+    data:{},
+    success:function(res){
+
+      //关闭加载框
+      wx.hideLoading();
+      console.log("调用云函数成功",res);
+      //获取返回的数据
+      let data = res.result.data;
+      // 添加字段
+      data.forEach(v =>{
+        v.isAct = false;
+      })
+
+       // 声明一个空数组，用来存放处理好的数据
+       let type = []; 
+       let begin = 0; 
+      while(begin < data.length){
+        let tmp = data.slice(begin, begin+8);
+        begin +=8
+        type.push(tmp); // push: 数组添加数据
+      }
+      console.log(type)
+   //修改bookKeepingData的数据
+   that.setData({
+    bookKeepingData: type
+  })
+  
+    }
+  })
+},
+ // 记账类型的点击事件
+ selectBookKeepingType: function(e){
+
+  console.log(e)
+
+  // 获取bookKeepingData的值
+  let bannerType = this.data.bookKeepingData;
+  // 获取当前点击的类型对应第一重下标
+  let index = e.currentTarget.dataset.index;
+  // 获取当前点击的类型对应第二重下标
+  let id = e.currentTarget.dataset.id;
+
+  if(bannerType[index][id].isAct){  // 当前点击类型已激活，需取消激活
+    bannerType[index][id].isAct = false;
+    console.log("已取消")
+  }else{
+    for (let i = 0; i < bannerType.length; i++) {
+      for (let j = 0; j < bannerType[i].length; j++) {
+        if (bannerType[i][j].isAct) {
+          bannerType[i][j].isAct = false;
+          break;  // 找到isAct为true的时候就结束循环，不在查找
+        }
+      }
+    }
+
+    // 设置当前点击类型的对应的isAct 为true
+    bannerType[index][id].isAct = true;
+
+  }
+
+ console.log(bannerType)
+
+  // 将修改好的bannerType赋给data里的bookKeepingData
+  this.setData({
+    bookKeepingData: bannerType
+  })
+
+},
 
 
   

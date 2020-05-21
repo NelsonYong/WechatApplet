@@ -78,6 +78,16 @@ page{
   color: #999999;
   padding-top: 10rpx;
 }
+/*  选择后的样式 */
+.item.active  .icon,
+.item.active  .text{
+  /* scale(放大倍数）参数为1，没有变化 */
+  transform:  scale(1.1);
+}
+.item.active  .text{
+  font-weight: bold;
+  color: #4A4A4A;
+}
 
 /* 账户选择 */
 .account,
