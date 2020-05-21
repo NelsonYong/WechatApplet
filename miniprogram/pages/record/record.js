@@ -45,7 +45,7 @@ Page({
         isActive: false
       }
     ],
-    date: "" , // 记账时间
+    date:"", // 记账时间
     dateRange: {
       start: "",
       end: ""
@@ -59,15 +59,28 @@ Page({
    */
   onLoad: function (options) {
       
-this.setData();
-    //调用云函数
-     wx.cloud.callFunction({
-             name:"get_book_keeping",
-             data:{},
-             success:function(res){
-               console.log("调用成功",res)
-             }
-     })
+      this.setDate();
+
+      wx.showLoading({
+        title: '加载中',
+      })
+      wx.cloud.callFunction({
+        name:"get_book_data",
+        data:{},
+        success:function(res){     
+          wx.hideLoading();
+          let data=res.result.data;
+         
+          let type=[];
+          let begin=0;
+          
+          
+
+        }
+      })
+
+
+   
 
   },
 
@@ -122,27 +135,37 @@ selectdate:function(e){
   
 },
 setDate: function(){
-  // 设置开始日期和结束日期
-  // 获取当前日期
-  var currentDate = new Date().toLocaleDateString().split("/");
-  //  console.log(currentDate)
+ //设置开始结束时间
 
-  // 开始日期
-  var start = currentDate[0] - 1 + "-" + currentDate[1] + "-" + currentDate[2];
-  // console.log(start)
+  let time=new Date();//实例化时间
+  //获取年份
+   let year=time.getFullYear();
+   //获取月份,月份从0开始要加1
+   let month=time.getMonth()+1;
+   //获取日
+  let day=time.getDate();
 
-  // 结束日期
-  var end = currentDate.join("-");
-  // console.log(end)
-
-  // 设置data的值
+  let start=(year-1)+"-"+this.addzero(month)+"-"+this.addzero(day);
+  let end_=(year)+"-"+this.addzero(month)+"-"+this.addzero(day);
+ 
   this.setData({
-    dateRange: {
-      start,
-      end
-    },
-    date: end
+    date:end_,
+    dateRange:{
+      start:start,
+      end:end_
+    }
+   
+
   })
+
+
+  
+},
+
+addzero:function(num){
+
+return num<10?("0"+num):num;
+
 }
 
 

@@ -16,6 +16,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+   //调用add函数
+  
      // 设置开始日期和结束日期
      // 获取当前日期
      var currentDate = new Date().toLocaleDateString().split("/");
