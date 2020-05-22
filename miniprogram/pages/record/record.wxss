@@ -59,6 +59,7 @@ page{
   justify-content: center;
   align-items: center;
   margin-top: 60rpx;
+  margin-right: 30rpx;
 }
 
 /* 图标 */
@@ -155,4 +156,16 @@ page{
 .date-picker{
   display: flex;
   width: 100%;
+}
+
+/* 保存按钮 */
+.save{
+  width: 400rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  margin: 30rpx auto 60rpx;
+  background: #4B0082;
+  border-radius: 20rpx;
+  color: white;
 }

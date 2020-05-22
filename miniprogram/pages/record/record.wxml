@@ -63,17 +63,18 @@
         <view class="info-box">
            <view class="date-title">金额</view>
            <view class="info-input" >
-               <input placeholder="请输入金额"></input>
+               <input type="digit" placeholder="请输入金额" confirm-type="demo" bindblur="getInfo" data-title="money">{{info.money}}</input>
             </view>
         </view> 
         <view class="info-box">
            <view class="date-title">备注</view>
            <view class="info-input" >
-               <input placeholder="请输入备注内容"></input>
+               <input placeholder="请输入备注内容" confirm-type="demo" bindblur="getInfo"data-title="comment">{{info.comment}}</input>
             </view>
         </view> 
     </view>
-    
+      <!-- 保存按钮 -->
+    <view class="save" bindtap="addBookKeeping">保存</view>
   </view>
 
 </view>

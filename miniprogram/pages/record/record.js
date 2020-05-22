@@ -9,10 +9,12 @@ Page({
     tabData: [
       {
         title: "支出",
+        type:"zhichu",
         isActive: true
       },
       {
         title: "收入",
+        type:"shouru",
         isActive: false
       }
     ],
@@ -27,22 +29,27 @@ Page({
     tabItemData: [
       {
         title: "现金",
+        type:"xianjin",
         isActive: true
       },
       {
         title: "微信钱包",
+        type:"wx",
         isActive: false
       },
       {
         title: "支付宝",
+        type:"zhifubao",
         isActive: false
       },
       {
         title: "储蓄卡",
+        type:"chuxu",
         isActive: false
       },
       {
         title: "信用卡",
+        type:"xinyong",
         isActive: false
       }
     ],
@@ -50,6 +57,11 @@ Page({
     dateRange: {
       start: "",
       end: ""
+    },
+    info:{
+      date:"",
+      money:"",
+      comment:""
     }
     
 
@@ -62,6 +74,7 @@ Page({
       
       this.setDate();
       this.getBookkeepingType();
+      
      
   },
 
@@ -69,7 +82,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+  },
+  onHide:function(){
+    this.resetData()
   },
   // 切换标题事件
   toggleTab: function(e){
@@ -105,14 +120,25 @@ Page({
       [datas]:tabData
     })
   },
+  getInfo:function(e){
+   let title=e.currentTarget.dataset.title;
+   this.data.info[title]=e.detail.value;
+   this.data.info.date=this.data.date;
+   this.setData({
+     info:this.data.info,
+     
+   })
+   console.log(this.data.info);
+  },
 
 //切换时间事件
 selectdate:function(e){
 
   this.setData({
     date:e.detail.value
-     
   })
+  this.data.info.date=this.data.date;
+  
   
 },
 setDate: function(){
@@ -180,7 +206,7 @@ getBookkeepingType:function(){
         begin +=8
         type.push(tmp); // push: 数组添加数据
       }
-      console.log(type)
+    
    //修改bookKeepingData的数据
    that.setData({
     bookKeepingData: type
@@ -192,10 +218,9 @@ getBookkeepingType:function(){
  // 记账类型的点击事件
  selectBookKeepingType: function(e){
 
-  console.log(e)
-
   // 获取bookKeepingData的值
   let bannerType = this.data.bookKeepingData;
+
   // 获取当前点击的类型对应第一重下标
   let index = e.currentTarget.dataset.index;
   // 获取当前点击的类型对应第二重下标
@@ -219,7 +244,7 @@ getBookkeepingType:function(){
 
   }
 
- console.log(bannerType)
+
 
   // 将修改好的bannerType赋给data里的bookKeepingData
   this.setData({
@@ -227,7 +252,105 @@ getBookkeepingType:function(){
   })
 
 },
+// 提交数据函数
+addBookKeeping: function(e){
+  
+  let data={};
+  for(var i=0;i<this.data.tabData.length;i++){
+    if(this.data.tabData[i].isActive){
+      data.cost=this.data.tabData[i].title;
+      data.costType=this.data.tabData[i].type;
+    
+    }
+  }
 
+  let isSelect=false;
+
+  for(var i=0;i< this.data.bookKeepingData.length;i++){  
+    for(var j=0;j< this.data.bookKeepingData[i].length;j++)
+    {
+          if( this.data.bookKeepingData[i][j].isAct)
+          {
+              data.iconId= this.data.bookKeepingData[i][j]._id;
+              data.iconType= this.data.bookKeepingData[i][j].type;
+              data.title= this.data.bookKeepingData[i][j].title;
+              data.icon= this.data.bookKeepingData[i][j].icon_url;
+              isSelect=true;
+              break;
+          }
+    }
+  }
+if(!isSelect){
+  wx.showLoading({
+    title: '请选择类型',
+    duration:2000,
+    icon:"none"
+  })
+  return;
+}
+
+for(var i=0;i<this.data.tabItemData.length;i++){
+  if(this.data.tabItemData[i].isActive){
+    data.accountType=this.data.tabItemData[i].title;
+    console.log(data.accountType);
+    break;
+  }
+}
+
+if(this.data.info.money==''){
+  wx.showLoading({
+    title: '请输入金额',
+    duration:2000,
+    icon:"none"
+  })
+  return;
+}
+for(let key in this.data.info){
+  data[key]=this.data.info[key]
+}
+console.log(data)
+wx.showLoading({
+  title: '正在保存',
+})
+//调用云函数
+let that=this;
+wx.cloud.callFunction({
+
+name:"add_book_data",
+data:data,
+
+success:function(res){
+
+  wx.hideLoading()
+   wx.showLoading({
+     title: '保存成功',
+     duration:2000,
+     mask:"true"
+   })
+  console.log("云函数add_book_data调用成功",res)
+}
+
+
+})
+
+ 
+  
+ 
+},
+
+//重置数据函数
+resetData:function(){
+
+  console.log("666");
+  //重置消费类型
+  this.data.tabData[0].isActive=true;
+  this.data.tabData[1].isActive=false;
 
   
+  this.setData({
+    tabData:this.data.tabData
+  })
+
+}
+
 })
