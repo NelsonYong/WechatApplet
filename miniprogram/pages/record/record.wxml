@@ -57,7 +57,7 @@
       <picker mode="date" class="date-picker" bindchange="selectdate" start="{{dateRange.start}}" end="dateRange.end">
         <view class="info-box">
                  <view class="date-title">日期</view>
-                 <view class="record-title">{{date}}</view>
+                 <view class="record-title">{{info.date}}</view>
         </view>
       </picker>
         <view class="info-box">

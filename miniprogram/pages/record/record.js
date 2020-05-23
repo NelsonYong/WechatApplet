@@ -54,6 +54,9 @@ Page({
       }
     ],
     date:"", // 记账时间
+    today:"",
+    money_:"",
+    comment_:"",
     dateRange: {
       start: "",
       end: ""
@@ -124,6 +127,10 @@ Page({
    let title=e.currentTarget.dataset.title;
    this.data.info[title]=e.detail.value;
    this.data.info.date=this.data.date;
+    
+   this.data.comment_=this.data.info['comment'];
+   this.data.money_=this.data.info['money'];
+
    this.setData({
      info:this.data.info,
      
@@ -135,9 +142,14 @@ Page({
 selectdate:function(e){
 
   this.setData({
-    date:e.detail.value
+    date:e.detail.value,
+    info:{
+      date:e.detail.value,
+      money:"",
+      comment:""
+    }
   })
-  this.data.info.date=this.data.date;
+ 
   
   
 },
@@ -154,12 +166,19 @@ setDate: function(){
 
   let start=(year-1)+"-"+this.addzero(month)+"-"+this.addzero(day);
   let end_=(year)+"-"+this.addzero(month)+"-"+this.addzero(day);
+  this.data.today=end_;
  
   this.setData({
     date:end_,
     dateRange:{
       start:start,
       end:end_
+    },
+    info:{
+        date:this.data.today,
+        money:"",
+        comment:""
+
     }
    
 
@@ -346,9 +365,34 @@ resetData:function(){
   this.data.tabData[0].isActive=true;
   this.data.tabData[1].isActive=false;
 
+   // 重置记账类型数据
+   for (var i = 0; i < this.data.bookKeepingData.length; i++) {
+    for (var j = 0; j < this.data.bookKeepingData[i].length; j++) {
+      if (this.data.bookKeepingData[i][j].isAct) {
+        this.data.bookKeepingData[i][j].isAct = false;
+        break;
+      }
+    }
+  }
+
+    // 重置账户选择
+    // 获取账户选择的数据
+    this.data.tabItemData[0].isActive = true;
+    for (var i = 1; i < this.data.tabItemData.length; i++) {
+      this.data.tabItemData[i].isActive = false;
+   
+    }
+
   
   this.setData({
-    tabData:this.data.tabData
+    tabData:this.data.tabData,
+    bookKeepingData: this.data.bookKeepingData,
+    tabItemData: this.data.tabItemData,
+    info:{
+          date:this.data.today,
+          money:"",
+          comment:""  
+    }
   })
 
 }
