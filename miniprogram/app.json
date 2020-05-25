@@ -11,7 +11,9 @@
   "window": {
     "navigationBarBackgroundColor": "#FEDB5A",
     "navigationBarTitleText": "留迹",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "backgroundTextStyle":"dark",
+    "enablePullDownRefresh":true
   },
   "tabBar": {
     "color": "#bfbfbf",

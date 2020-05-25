@@ -13,11 +13,17 @@ Page({
     },
   
     bookKeepingData:[],
+    monthMoneyData:[],
     isFirstLoad:true,
     date:"",
     money_type:{
       zhichu:0,
       shouru:0
+    },
+    month_money:{
+      surplus:"",
+      shouru:"",
+      zhichu:""
     }
   },
 
@@ -25,14 +31,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getBookKeepingData()
+    this.getBookKeepingData(this.data.date)
     this.getmoneyType()
-
-   
   },
   onHide:function(){
     this.getBookKeepingData(this.data.date)
     this.getmoneyType()
+    this.getMonth_()
   },
 
   /**
@@ -41,22 +46,21 @@ Page({
   onReady: function () {
       this.setDate()
       this.getBookKeepingData(this.data.date)
-      this.getMonth()
-     
+      this.getMonth_()
+    
   },
-  OnShow:function(){
+  /*OnShow:function(){
 
     if(this.data.isFirstLoad){
     
      this.data.isFirstLoad=false
     }else{  
-    
-     
       this.getBookKeepingData(this.data.date)
+      this.getMonth_()
       
     }
   
-  },
+  },*/
   
 selectdate:function(e){
 
@@ -65,7 +69,7 @@ selectdate:function(e){
     })
     this.getBookKeepingData(this.data.date)
     this.getmoneyType()
-    this.getMonth()
+    this.getMonth_()
  
 },
 
@@ -132,8 +136,6 @@ for(var i=0;i<this.data.bookKeepingData.length;i++){
     shouru=parseInt(shouru)+parseInt(this.data.bookKeepingData[i].money)
   }
 }
-  console.log("支出",parseInt(zhichu))
-  console.log("收入",parseInt(shouru))
   this.setData({
 
     money_type:{
@@ -146,11 +148,63 @@ for(var i=0;i<this.data.bookKeepingData.length;i++){
 
 },
 
-getMonth:function(){
+getMonth_:function(){
 
   let month=this.data.date.slice(0,7)
-  console.log(month)
+  this.getMonthData(month)
 
+},
+
+getMonthData:function(month){
+  console.log(month)
+  let that=this
+  wx.cloud.callFunction({
+    name:"get_Month_data",
+    data:{
+      year_month:month
+    },
+    success:function(res){
+    console.log("调用获取月云函数成功",res)
+    that.setData({
+      monthMoneyData:res.result.data
+    })
+    that.getMonthMoney()
+    },
+  
+    })
+
+
+},
+
+getMonthMoney:function(){
+
+  let zhichu=0
+  let shouru=0
+  let surplus=0
+  let that=this
+for(var i=0;i<this.data.monthMoneyData.length;i++){
+
+  if(this.data.monthMoneyData[i].costType=="zhichu"){
+    zhichu=parseInt(zhichu)+parseInt(this.data.monthMoneyData[i].money)
+  }
+  else{
+    shouru=parseInt(shouru)+parseInt(this.data.monthMoneyData[i].money)
+  }
+}
+  surplus=parseInt(shouru)-parseInt(zhichu)
+  console.log("支出",parseInt(zhichu))
+  console.log("收入",parseInt(shouru))
+  console.log("结余",parseInt(surplus))
+
+  that.setData({
+
+    month_money:{
+      surplus:surplus,
+      zhichu:zhichu,
+      shouru:shouru 
+    }
+
+  })
 }
 
 

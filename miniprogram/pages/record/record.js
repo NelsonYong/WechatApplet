@@ -137,12 +137,14 @@ Page({
 //切换时间事件
 selectdate:function(e){
 
+ 
   this.setData({
     date:e.detail.value,
     info:{
       date:e.detail.value,
       money:"",
-      comment:""
+      comment:"",
+      year_month:""
     }
   })
  
@@ -312,6 +314,7 @@ if(this.data.info.money==''){
   })
   return;
 }
+this.data.info.year_month=this.data.info.date.slice(0,7)
 for(let key in this.data.info){
   data[key]=this.data.info[key]
 }

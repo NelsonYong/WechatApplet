@@ -3,18 +3,18 @@
   <view class="header">
     <view class="top">
       <view class="top-title">本月结余</view>
-      <view class="top-tatal">1234567.<text class="small">00</text></view>
+      <view class="top-tatal">{{month_money.surplus}}.<text class="small">00</text></view>
     </view>
 
     <view class="bottom clearfix">
       <view class="item-bottom fl">
         <view class="bottom-title">本月收入</view>
-        <view class="bottom-tatal">6666666.00</view>
+        <view class="bottom-tatal">{{month_money.shouru}}.00</view>
       </view>
       <view class="line"></view>
       <view class="item-bottom fl">
         <view class="bottom-title">本月支出</view>
-        <view class="bottom-tatal">55555555.00</view>
+        <view class="bottom-tatal">{{month_money.zhichu}}.00</view>
       </view>
     </view>
   </view>

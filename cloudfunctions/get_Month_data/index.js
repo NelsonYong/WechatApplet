@@ -2,15 +2,16 @@
 const cloud = require('wx-server-sdk')
 
 cloud.init()
-
+const db = cloud.database()
+const _=db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext()
 
-  return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
+  try {
+    return await db.collection('book_keeping_data').where({
+      year_month:_.eq(event.year_month)
+    }).get()
+  } catch (error) {
+    console.log(error)
   }
 }
