@@ -133,6 +133,7 @@
 /* 内容 */
 .item-text{
   margin-left: 20rpx;
+  overflow: hidden;
 }
 .item-text .text-title{
   font-weight: bold;
@@ -141,12 +142,16 @@
   padding-top: 10rpx;
   color: #B7B7B7;
   font-size: 24rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 /* 价格 */
 .item-money{
   display: flex;
   align-items: center;
   font-weight: bold;
+  white-space: nowrap;
 }
 .add{
   color: #FE5B62;

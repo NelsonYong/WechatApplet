@@ -62,8 +62,8 @@
       </picker>
         <view class="info-box">
            <view class="date-title">金额</view>
-           <view class="info-input" >
-               <input type="digit" placeholder="请输入金额" confirm-type="demo" bindblur="getInfo" data-title="money">{{info.money}}</input>
+           <view class="info-input">
+               <input type="digit" placeholder="请输入金额" confirm-type="demo" bindblur="getInfo" data-title="money" maxlength="10">{{info.money}}</input>
             </view>
         </view> 
         <view class="info-box">

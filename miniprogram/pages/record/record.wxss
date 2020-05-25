@@ -51,7 +51,7 @@ page{
 
 /* 单个选项 */
 .item{
-  width: 20%;
+  width: 25%;
   height: 126rpx;
   float: left;
   display: flex;
@@ -59,13 +59,13 @@ page{
   justify-content: center;
   align-items: center;
   margin-top: 60rpx;
-  margin-right: 30rpx;
 }
 
 /* 图标 */
 .icon{
   width: 80rpx;
   height: 80rpx;
+  transition: transform .1s;
 
 }
 .icon image{
@@ -78,6 +78,7 @@ page{
   font-size: 28rpx;
   color: #999999;
   padding-top: 10rpx;
+  transition: transform .1s;
 }
 /*  选择后的样式 */
 .item.active  .icon,

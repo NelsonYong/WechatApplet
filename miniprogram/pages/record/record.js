@@ -55,8 +55,7 @@ Page({
     ],
     date:"", // 记账时间
     today:"",
-    money_:"",
-    comment_:"",
+   
     dateRange: {
       start: "",
       end: ""
@@ -126,14 +125,11 @@ Page({
   getInfo:function(e){
    let title=e.currentTarget.dataset.title;
    this.data.info[title]=e.detail.value;
-   this.data.info.date=this.data.date;
+   console.log(this.data.info.money)
+   //this.data.info.date=this.data.date;
     
-   this.data.comment_=this.data.info['comment'];
-   this.data.money_=this.data.info['money'];
-
    this.setData({
      info:this.data.info,
-     
    })
    console.log(this.data.info);
   },
@@ -167,21 +163,14 @@ setDate: function(){
   let start=(year-1)+"-"+this.addzero(month)+"-"+this.addzero(day);
   let end_=(year)+"-"+this.addzero(month)+"-"+this.addzero(day);
   this.data.today=end_;
- 
+  this.data.info.date=end_;
   this.setData({
     date:end_,
     dateRange:{
       start:start,
       end:end_
     },
-    info:{
-        date:this.data.today,
-        money:"",
-        comment:""
-
-    }
-   
-
+    info:this.data.info
   })
 
 
@@ -311,7 +300,6 @@ if(!isSelect){
 for(var i=0;i<this.data.tabItemData.length;i++){
   if(this.data.tabItemData[i].isActive){
     data.accountType=this.data.tabItemData[i].title;
-    console.log(data.accountType);
     break;
   }
 }
@@ -347,6 +335,7 @@ success:function(res){
      mask:"true"
    })
   console.log("云函数add_book_data调用成功",res)
+  that.resetData()
 }
 
 
@@ -360,7 +349,7 @@ success:function(res){
 //重置数据函数
 resetData:function(){
 
-  console.log("666");
+ 
   //重置消费类型
   this.data.tabData[0].isActive=true;
   this.data.tabData[1].isActive=false;
@@ -383,15 +372,15 @@ resetData:function(){
    
     }
 
-  
-  this.setData({
-    tabData:this.data.tabData,
-    bookKeepingData: this.data.bookKeepingData,
-    tabItemData: this.data.tabItemData,
+  let that=this;
+  that.setData({
+    tabData:that.data.tabData,
+    bookKeepingData: that.data.bookKeepingData,
+    tabItemData: that.data.tabItemData,
     info:{
-          date:this.data.today,
+          date:that.data.today,
           money:"",
-          comment:""  
+          comment:""
     }
   })
 

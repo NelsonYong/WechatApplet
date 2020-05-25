@@ -24,35 +24,35 @@
     <view class="date">
      
       <view class="date-title">
-        <text>5月18日</text>
-        <text>今天</text>
-        <text>收入: 288</text>
-        <text>支出: 188</text>
+        <text>{{date}}</text>
+        <text>{{date==dateRange.end?'今天':''}}</text>
+        <text>收入: {{money_type.shouru}}</text>
+        <text>支出:  {{money_type.zhichu}}</text>
       </view>
       <!-- 右边三个点 -->
       <view class="more">
-      <picker class="date-picker" mode="date"  start="{{dateRange.start}}" end="{{dateRange.end}}" bindchange="selectDate">1</picker>
+      <picker class="date-picker" mode="date"  start="{{dateRange.start}}" end="{{dateRange.end}}" bindchange="selectdate">1</picker>
         <view class="cricle"></view>
         <view class="cricle"></view>
         <view class="cricle"></view>
       </view>
     </view>
     <!-- 记录 -->
-    <view class="item-list" wx:for="{{arr}}" wx:key="index">
+    <view class="item-list" wx:for="{{bookKeepingData}}" wx:key="index">
       <view class="item">
       <!-- 左边 图标-->
         <view class="item-icon">
-          <image src="cloud://wechat-6zrti.7765-wechat-6zrti-1300845689/Could_Projects/images/type1.png"></image>
+          <image src="{{item.icon}}"></image>
         </view>
         <!-- 右边文字 -->
         <view class="item-box">
           <!-- 内容 -->
           <view class="item-text">
-            <view class="text-title">早餐</view>
-            <view class="text-msg">两个包子，一杯豆浆</view>
+            <view class="text-title">{{item.title}}</view>
+            <view class="text-msg">{{item.comment}}</view>
           </view>
           <!-- 价格 -->
-          <view class="item-money add">+￥5.00</view>
+          <view class="item-money add  {{item.costType=='zhichu'?'reduce':'add'}}">{{item.costType=='zhichu'?'-':'+'}}￥{{item.money}}.00</view>
         </view>
         
       </view>
