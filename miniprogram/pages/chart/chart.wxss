@@ -1,1 +1,53 @@
-/* miniprogram/pages/chart/chart.wxss */
+ec-canvas {
+  width: 100%;
+  height: 93%;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 
+.picker-pos{
+  margin-top: -130rpx;
+  margin-left: 150rpx;
+  color: blueviolet
+}
+.title{
+  position: sticky;
+  display: flex;
+  background-color: #FF3399;
+  width:40%;
+  height:5%;
+  color: white;
+  margin-bottom: 30rpx;
+  padding-left: 50rpx;
+  border-radius: 30rpx;
+  margin-top: 10rpx;
+  padding-bottom: 5rpx;
+  text-align: center;
+}
+.title text{
+  font-size: 35rpx;
+}
+.icon{
+
+  width: 41.6rpx;
+  height: 43rpx;
+}
+.date-picker{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}

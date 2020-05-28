@@ -33,11 +33,17 @@ Page({
   onLoad: function (options) {
     this.getBookKeepingData(this.data.date)
     this.getmoneyType()
+    this.getMonth_()
+  },
+  onShow:function(){
+    this.getBookKeepingData(this.data.date)
+    //this.getMonth_()
   },
   onHide:function(){
-    this.getBookKeepingData(this.data.date)
+
+    //this.getBookKeepingData(this.data.date)
     this.getmoneyType()
-    this.getMonth_()
+   // this.getMonth_()
   },
 
   /**
@@ -49,18 +55,7 @@ Page({
       this.getMonth_()
     
   },
-  /*OnShow:function(){
-
-    if(this.data.isFirstLoad){
-    
-     this.data.isFirstLoad=false
-    }else{  
-      this.getBookKeepingData(this.data.date)
-      this.getMonth_()
-      
-    }
-  
-  },*/
+ 
   
 selectdate:function(e){
 
@@ -150,6 +145,7 @@ for(var i=0;i<this.data.bookKeepingData.length;i++){
 
 getMonth_:function(){
 
+  this.getBookKeepingData(this.data.date)
   let month=this.data.date.slice(0,7)
   this.getMonthData(month)
 
@@ -205,6 +201,52 @@ for(var i=0;i<this.data.monthMoneyData.length;i++){
     }
 
   })
+},
+
+
+test:function(e){
+
+  let that=this
+  wx.showModal({
+    title:"删除该条信息",
+    cancelText:"取消",
+    confirmText:"确定",
+    content:"点击完成",
+    success:function(res){
+
+      if(res.confirm){
+
+        that.deleBookData(e.currentTarget.dataset.id)
+      }
+
+      if(res.cancel){
+        console.log("取消操作")
+      }
+    
+    }
+  })
+},
+
+deleBookData:function(id){
+  let that=this
+  wx.cloud.callFunction({
+
+    name:"delet_book_data",
+    data:{
+      id:id
+    },
+    success:function(res){
+  
+      console.log("调用删除数据成功",res)
+      that.getBookKeepingData(that.data.date)
+      wx.showLoading({
+        title: '删除成功',
+        duration:1000
+      })
+    }
+  })
+
+
 }
 
 

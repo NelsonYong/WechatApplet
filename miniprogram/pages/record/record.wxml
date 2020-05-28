@@ -63,13 +63,13 @@
         <view class="info-box">
            <view class="date-title">金额</view>
            <view class="info-input">
-               <input type="digit" placeholder="请输入金额" confirm-type="demo" bindblur="getInfo" data-title="money" maxlength="10">{{info.money}}</input>
+               <input type="digit" placeholder="请输入金额" confirm-type="demo" bindblur="getInfo" data-title="money" maxlength="10" value="{{info.money}}"></input>
             </view>
         </view> 
         <view class="info-box">
            <view class="date-title">备注</view>
            <view class="info-input" >
-               <input placeholder="请输入备注内容" confirm-type="demo" bindblur="getInfo"data-title="comment">{{info.comment}}</input>
+               <input placeholder="请输入备注内容" confirm-type="demo" bindblur="getInfo"data-title="comment"value="{{info.comment}}"></input>
             </view>
         </view> 
     </view>

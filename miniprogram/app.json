@@ -2,7 +2,6 @@
   "pages": [
     "pages/home/home",
     "pages/record/record",
-    
     "pages/chart/chart",
     "pages/my/my",
     "pages/index/index"
@@ -11,9 +10,8 @@
   "window": {
     "navigationBarBackgroundColor": "#FEDB5A",
     "navigationBarTitleText": "留迹",
-    "navigationBarTextStyle": "white",
-    "backgroundTextStyle":"dark",
-    "enablePullDownRefresh":true
+    "navigationBarTextStyle": "white"
+   
   },
   "tabBar": {
     "color": "#bfbfbf",

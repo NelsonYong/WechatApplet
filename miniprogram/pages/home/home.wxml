@@ -39,7 +39,7 @@
     </view>
     <!-- 记录 -->
     <view class="item-list" wx:for="{{bookKeepingData}}" wx:key="index">
-      <view class="item">
+      <view class="item" bindlongpress='test' data-id="{{item._id}}">
       <!-- 左边 图标-->
         <view class="item-icon">
           <image src="{{item.icon}}"></image>

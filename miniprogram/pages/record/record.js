@@ -55,6 +55,7 @@ Page({
     ],
     date:"", // 记账时间
     today:"",
+    test:"",
    
     dateRange: {
       start: "",
@@ -87,6 +88,13 @@ Page({
   },
   onHide:function(){
     this.resetData()
+    this.setDate({
+      info:{
+        date:this.data.today,
+        money:"",
+        comment:""
+      }
+    })
   },
   // 切换标题事件
   toggleTab: function(e){
@@ -191,33 +199,33 @@ getBookkeepingType:function(){
     title: '加载中',
   })
 
-  // 记录this指向
+ 
   let that = this;
   wx.cloud.callFunction({
     name:"get_book_data",
     data:{},
     success:function(res){
 
-      //关闭加载框
+  
       wx.hideLoading();
       console.log("调用云函数成功",res);
-      //获取返回的数据
+    
       let data = res.result.data;
-      // 添加字段
+     
       data.forEach(v =>{
         v.isAct = false;
       })
 
-       // 声明一个空数组，用来存放处理好的数据
+      
        let type = []; 
        let begin = 0; 
       while(begin < data.length){
         let tmp = data.slice(begin, begin+8);
         begin +=8
-        type.push(tmp); // push: 数组添加数据
+        type.push(tmp); 
       }
     
-   //修改bookKeepingData的数据
+   
    that.setData({
     bookKeepingData: type
   })
@@ -225,18 +233,14 @@ getBookkeepingType:function(){
     }
   })
 },
- // 记账类型的点击事件
+ 
  selectBookKeepingType: function(e){
 
-  // 获取bookKeepingData的值
   let bannerType = this.data.bookKeepingData;
-
-  // 获取当前点击的类型对应第一重下标
   let index = e.currentTarget.dataset.index;
-  // 获取当前点击的类型对应第二重下标
   let id = e.currentTarget.dataset.id;
 
-  if(bannerType[index][id].isAct){  // 当前点击类型已激活，需取消激活
+  if(bannerType[index][id].isAct){  
     bannerType[index][id].isAct = false;
     console.log("已取消")
   }else{
@@ -244,25 +248,25 @@ getBookkeepingType:function(){
       for (let j = 0; j < bannerType[i].length; j++) {
         if (bannerType[i][j].isAct) {
           bannerType[i][j].isAct = false;
-          break;  // 找到isAct为true的时候就结束循环，不在查找
+          break;  
         }
       }
     }
 
-    // 设置当前点击类型的对应的isAct 为true
+  
     bannerType[index][id].isAct = true;
 
   }
 
 
 
-  // 将修改好的bannerType赋给data里的bookKeepingData
+
   this.setData({
     bookKeepingData: bannerType
   })
 
 },
-// 提交数据函数
+
 addBookKeeping: function(e){
   
   let data={};

@@ -1,2 +1,11 @@
-<!--miniprogram/pages/chart/chart.wxml-->
-<text>miniprogram/pages/chart/chart.wxml</text>
+<!--index.wxml-->
+<!--index.wxml-->
+
+<view class="container">
+<view class="title">
+<text>年/月:{{date}}</text>
+ <picker class="date-picker" mode="date" fields="month" start="{{dateRange.start}}"   end="{{dateRange.end}}" bindchange="selectdate">1</picker>
+<image src="../../images/日期.png" class="icon"></image>
+</view>
+  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}" bindtouchstart="slelectDate"></ec-canvas>
+</view>
