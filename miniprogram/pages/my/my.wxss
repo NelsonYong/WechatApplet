@@ -1,1 +1,32 @@
 /* miniprogram/pages/my/my.wxss */
+.top{
+  padding: 20rpx 0;
+ width: 100%;
+ height: 240rpx;
+  background-image: linear-gradient(to right, #FCD957, #F2BE44);
+}
+.auctor{
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+}
+.btn{
+ position: absolute;
+ top: 0;
+ left: 0;
+ /*  !important css样式最高级 */
+ width: 180rpx !important;
+ height: 180rpx!important;
+ line-height: 180rpx;
+ padding: 0;
+ border-radius: 50%;
+
+}
+.userName{
+ width: 100%;
+ text-align: center;
+ padding-top: 20rpx;
+ font-weight: bold;
+}

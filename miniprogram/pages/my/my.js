@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo:{},   // 存在用户信息
+    isAuth: false   // 判断是否是授权状态
 
   },
 
@@ -26,41 +28,37 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this;
+      // 查询用户是否已经授权
+    wx.getSetting({
+      success: function(res){
+        console.log(res)
+        console.log(res.authSetting["scope.userInfo"])
+        if (res.authSetting["scope.userInfo"]){
+          wx.getUserInfo({   // 获取用户信息接口
+            success: function(r){
+              console.log(r)
+              that.setData({
+                userInfo: r.userInfo,
+                isAuth: true
+              })
 
+            }
+          })
+        }
+        
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  // 获取用户信息
+  onGetUserInfo: function(res){
+    console.log(res)
+    if (res.detail.userInfo){
+      this.setData({
+        userInfo: res.detail.userInfo,
+        isAuth: true
+      })
+    }
   }
+  
 })

@@ -35,36 +35,124 @@ Page({
     this.getmoneyType()
     this.getMonth_()
   },
+  onReady: function () {
+    var that = this;
+    // 查询用户是否已经授权
+  wx.getSetting({
+    success: function(res){
+      console.log(res)
+      console.log(res.authSetting["scope.userInfo"])
+      if (res.authSetting["scope.userInfo"]){
+        wx.getUserInfo({   // 获取用户信息接口
+          success: function(r){
+            wx.showLoading({
+              title: '加载中',
+              duration:500
+            })
+            that.setDate()
+            that.getBookKeepingData(that.data.date)
+            that.getmoneyType()
+            that.getMonth_()
+
+          }
+        })
+      }
+      else{
+       wx.showLoading({
+         title: '请点击我的授权',
+         duration:2000
+       })
+      }
+      
+    }
+  })
+   
+    
+  },
+ 
   onShow:function(){
-    this.getBookKeepingData(this.data.date)
+    var that = this;
+    // 查询用户是否已经授权
+  wx.getSetting({
+    success: function(res){
+      console.log(res)
+      console.log(res.authSetting["scope.userInfo"])
+      if (res.authSetting["scope.userInfo"]){
+        wx.getUserInfo({   // 获取用户信息接口
+          success: function(r){
+            wx.showLoading({
+              title: '加载中',
+              duration:500
+            })
+            that.setDate()
+            that.getBookKeepingData(that.data.date)
+            that.getmoneyType()
+            that.getMonth_()
+
+          }
+        })
+      }
+      else{
+       wx.showLoading({
+         title: '请点击我的授权',
+         duration:2000
+       })
+      }
+      
+    }
+  })
+   
+  
+   
     //this.getMonth_()
   },
   onHide:function(){
 
     //this.getBookKeepingData(this.data.date)
     this.getmoneyType()
+    this.getMonth_()
    // this.getMonth_()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-      this.setDate()
-      this.getBookKeepingData(this.data.date)
-      this.getMonth_()
-    
-  },
- 
+  
   
 selectdate:function(e){
+  var that = this;
+    // 查询用户是否已经授权
+  wx.getSetting({
+    success: function(res){
+      console.log(res)
+      console.log(res.authSetting["scope.userInfo"])
+      if (res.authSetting["scope.userInfo"]){
+        wx.getUserInfo({   // 获取用户信息接口
+          success: function(r){
+            wx.showLoading({
+              title: '加载中',
+              duration:500
+            })
+            that.setData({
+              date:e.detail.value,
+            })
+            that.getBookKeepingData(that.data.date)
+            that.getmoneyType()
+            that.getMonth_()
 
-    this.setData({
-      date:e.detail.value,
-    })
-    this.getBookKeepingData(this.data.date)
-    this.getmoneyType()
-    this.getMonth_()
+          }
+        })
+      }
+      else{
+       wx.showLoading({
+         title: '请点击我的授权',
+         duration:2000
+       })
+      }
+      
+    }
+  })
+   
  
 },
 

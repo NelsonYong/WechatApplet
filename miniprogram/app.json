@@ -1,9 +1,11 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/my/my",
+   
     "pages/record/record",
     "pages/chart/chart",
-    "pages/my/my",
+    
     "pages/index/index"
    
   ],

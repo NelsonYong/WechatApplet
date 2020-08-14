@@ -23,6 +23,7 @@ Page({
       start: "",
       end: ""
     },
+    isAuth:false,
     bookKeepingData:[],
    
   },
@@ -39,37 +40,83 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    wx.showLoading({
-      title: '加载中',
-      duration:3000
-    })
-    this.setDate()
-    this.SetData()
-    this.getChartData()
-    this.test()
+    var that = this;
+    // 查询用户是否已经授权
+  wx.getSetting({
+    success: function(res){
+      console.log(res)
+      console.log(res.authSetting["scope.userInfo"])
+      if (res.authSetting["scope.userInfo"]){
+        wx.getUserInfo({   // 获取用户信息接口
+          success: function(r){
+            wx.showLoading({
+              title: '加载中',
+              duration:3000
+            })
+            that.setDate()
+            that.SetData()
+            that.getChartData()
+            that.test()
+
+          }
+        })
+      }
+      else{
+       wx.showLoading({
+         title: '请点击我的授权',
+         duration:2000
+       })
+      }
+      
+    }
+  })
+   
+  
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
-    this.setDate()
-   
-    //this.SetData()
-    //this.getChartData()
-  
+    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    wx.showLoading({
-      title: '加载中',
-      duration:500
-    })
-    this.test()
+    var that = this;
+    // 查询用户是否已经授权
+  wx.getSetting({
+    success: function(res){
+      console.log(res)
+      console.log(res.authSetting["scope.userInfo"])
+      if (res.authSetting["scope.userInfo"]){
+        wx.getUserInfo({   // 获取用户信息接口
+          success: function(r){
+            wx.showLoading({
+              title: '加载中',
+              duration:1000
+            })
+            that.setDate()
+            that.SetData()
+            that.getChartData()
+            that.test()
+
+          }
+        })
+      }
+      else{
+       wx.showLoading({
+         title: '请点击我的授权',
+         duration:2000
+       })
+      }
+      
+    }
+  })
+   
+   
     //this.getChartData()
     //this.test()
   },
@@ -320,6 +367,18 @@ SetChartData_zhichu:function(title_data)
      
   }
  })
+},
+onGetUserInfo: function (res) {
+  wx.getUserInfo({
+    success:function(res){
+      if (res.detail.userInfo) {
+        this.setData({
+          isAuth: true
+        })
+      }
+    }
+  })
+ 
 }
 
 

@@ -56,6 +56,8 @@ Page({
     date:"", // 记账时间
     today:"",
     test:"",
+    isAuth:false,
+    cloud_id:"",
    
     dateRange: {
       start: "",
@@ -85,6 +87,29 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+  },
+  onShow:function(){
+    var that = this;
+    // 查询用户是否已经授权
+  wx.getSetting({
+    success: function(res){
+      console.log(res)
+      console.log(res.authSetting["scope.userInfo"])
+      if (res.authSetting["scope.userInfo"]){
+        wx.getUserInfo({   // 获取用户信息接口
+          success: function(r){
+that.setData({
+  isAuth:true
+})
+
+          }
+        })
+      }
+     
+      
+    }
+  })
+   
   },
   onHide:function(){
     this.resetData()
@@ -322,6 +347,7 @@ this.data.info.year_month=this.data.info.date.slice(0,7)
 for(let key in this.data.info){
   data[key]=this.data.info[key]
 }
+
 console.log(data)
 wx.showLoading({
   title: '正在保存',
@@ -391,6 +417,15 @@ resetData:function(){
     }
   })
 
+},
+onGetUserInfo: function (res) {
+  console.log(res)
+  if (res.detail.userInfo) {
+    this.setData({
+      isAuth: true,
+      cloud_id:res.detail.cloudID
+    })
+  }
 }
 
 })

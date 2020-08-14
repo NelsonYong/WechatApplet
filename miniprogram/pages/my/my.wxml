@@ -1,2 +1,15 @@
-<!--miniprogram/pages/my/my.wxml-->
-<text>miniprogram/pages/my/my.wxml</text>
+<view class="my">
+
+  <view class="top">
+  <!-- 头像 -->
+    <view class="auctor">
+      <image class="auctor" wx:if="{{isAuth}}" src="{{userInfo.avatarUrl}}"></image>
+      <button wx:else class="btn" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">获取头像</button>
+
+    </view>
+    <!-- 昵称 -->
+    <view class="userName">{{userInfo.nickName}}</view>
+  
+  </view>
+
+</view>

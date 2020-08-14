@@ -170,3 +170,21 @@ page{
   border-radius: 20rpx;
   color: white;
 }
+.save-box{
+  position: relative;
+  border-radius: 20rpx;
+  width: 400rpx;
+  height: 80rpx;
+  margin: 30rpx auto 60rpx;
+}
+
+.btn{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400rpx !important;
+  height: 80rpx  !important;
+  border-radius: 20rpx;
+  padding: 0;
+  background-color: transparent;
+}
